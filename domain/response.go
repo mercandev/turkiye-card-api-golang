@@ -1,11 +1,11 @@
 package domain
 
 type Response struct {
-	IdentityCard   []string `json:"identity_card"`
-	Cards          []string `json:"cards"`
-	Transactions   []string `json:"transactions"`
-	Services       []string `json:"services"`
-	EnabledService []string `json:"enabled_service"`
+	IdentityCard   `json:"identity_card"`
+	Cards          []Cards        `json:"cards"`
+	Transactions   []Transactions `json:"transactions"`
+	Services       []Services     `json:"services"`
+	EnabledService `json:"enabled_service"`
 }
 
 type Cards struct {
@@ -27,24 +27,31 @@ type IdentityCard struct {
 }
 
 type Transactions struct {
-	Company         string  `json:"company"`
-	TransactionDate string  `json:"transactions_date"`
-	Balance         float64 `json:"balance"`
+	Company         string `json:"company"`
+	TransactionDate string `json:"transactions_date"`
+	TransactionHour string `json:"transaction_hour"`
+	Balance         string `json:"balance"`
 }
 
 type Services struct {
-	ServicesName    string  `json:"serices_name"`
-	PaymentsService string  `json:"payments_service"`
-	Balance         float32 `json:"balance"`
+	ServicesName    string `json:"serices_name"`
+	PaymentsService string `json:"payments_service"`
+	Balance         string `json:"balance"`
 }
 
 type EnabledService struct {
-	SafeSecurePay  bool `json:"safe_secure_pay"`
-	DrivingLicence bool `json:"driving_licence"`
-	Passport       bool `json:"passport"`
-	PassengerCard  bool `json:"passenger_card"`
+	SafeSecurePay  bool            `json:"safe_secure_pay"`
+	DrivingLicence bool            `json:"driving_licence"`
+	Passport       bool            `json:"passport"`
+	PassengerCard  bool            `json:"passenger_card"`
+	OtherServices  []OtherServices `json:"other_services"`
 }
 
 type Banks struct {
 	BankName string `json:"bank_name"`
+}
+
+type OtherServices struct {
+	Name  string `json:"name"`
+	Value bool   `json:"value"`
 }
